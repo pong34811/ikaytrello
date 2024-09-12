@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 ]
 
 LOGIN_URL = '/'
-
+STATIC_URL = "static/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

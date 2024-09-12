@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout
 from django.views.decorators.csrf import csrf_exempt
 from .models import Board ,models
+from django.views.generic.edit import FormView
+from django.contrib.auth.forms import UserCreationForm
 import json
 
 
@@ -17,13 +19,28 @@ class CustomLoginView(LoginView):
     def get_success_url(self):
         return reverse_lazy('board')
 
+
 class UserLogoutView(LogoutView):
     def get(self, request):
         logout(request)
         return redirect('login')
 
-def register_view(request):
-    return render(request, 'auth/register.html')
+class RegisterPage(FormView):
+    template_name = 'auth/register.html'
+    form_class = UserCreationForm
+    redirect_authenticated_user = True
+    success_url = reverse_lazy('board')
+
+    def form_valid(self, form):
+        user = form.save()
+        if user is not None:
+            login(self.request, user)
+        return super(RegisterPage, self).form_valid(form)
+
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('board')
+        return super(RegisterPage, self).get(*args, **kwargs)
 
 @login_required
 @csrf_exempt

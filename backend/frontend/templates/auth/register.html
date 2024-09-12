@@ -1,1 +1,80 @@
-rerasda
+{%load static%}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <!-- Bootstrap Icons for Social Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+        crossorigin="anonymous">
+</head>
+
+<body class="min-vh-100 d-flex flex-column ">
+    <header class="p-2 text-white text-center shadow-sm mb-4" style="background-color: #062c80;">
+        <img src="{% static 'img/logo.png' %}" class="img-fluid" style="max-width: 100px; height: auto;">
+    </header>
+    <main class="container flex-grow-1 p-0  d-flex flex-column justify-content-center align-items-center text-center">
+        <form method="POST" class="bg-white rounded-4 p-5 shadow-lg" style="max-width: 350px; margin: auto;">
+            {% csrf_token %}
+            <div class="icon-container text-center">
+                <img src="{% static 'img/teamwork.png' %}" class="img-fluid" style="max-width: 150px; height: auto;">
+            </div>
+            <div class="mb-3">
+                <label for="{{ form.username.id_for_label }}" class="form-label">{{ form.username.label }}</label>
+                <input type="text" name="{{ form.username.name }}" class="form-control"  required>
+            </div>
+            <div class="mb-3">
+                <label for="{{ form.password1.id_for_label }}" class="form-label">{{ form.password1.label }}</label>
+                <input type="password" id="{{ form.password1.id_for_label }}" name="{{ form.password1.name }}"
+                    class="form-control"  required>
+            </div>
+            <div class="mb-4">
+                <label for="{{ form.password2.id_for_label }}" class="form-label">{{ form.password2.label }}</label>
+                <input type="password" id="{{ form.password2.id_for_label }}" name="{{ form.password2.name }}"
+                    class="form-control"  required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+            <hr>
+            <p class="mt-3 text-sm text-muted">Already have an account?
+                <a href="{% url 'login' %}" class="text-primary">Login</a>
+            </p>
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-outline-primary btn-floating mx-1">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="#" class="btn btn-outline-danger btn-floating mx-1">
+                    <i class="bi bi-google"></i>
+                </a>
+                <a href="#" class="btn btn-outline-info btn-floating mx-1">
+                    <i class="bi bi-twitter"></i>
+                </a>
+                <a href="#" class="btn btn-outline-dark btn-floating mx-1">
+                    <i class="bi bi-github"></i>
+                </a>
+            </div>
+        </form>
+        
+    </main>
+
+
+    <footer class="p-3 bg-info mt-4">
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
